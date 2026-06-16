@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bushra Al-Saqer | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
+                        mono: ['Space Grotesk', 'Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#0B0F19',
+                            card: '#131A2C',
+                            border: '#1E293B',
+                            green: '#10B981',
+                            blue: '#3B82F6',
+                            glowGreen: 'rgba(16, 185, 129, 0.15)',
+                            glowBlue: 'rgba(59, 130, 246, 0.15)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glow-green:hover {
+            box-shadow: 0 0 25px var(--cyber-glowGreen);
+            border-color: #10B981;
+        }
+        .glow-blue:hover {
+            box-shadow: 0 0 25px var(--cyber-glowBlue);
+            border-color: #3B82F6;
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1E293B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3B82F6;
+        }
+        /* Smooth transition for language switching direction */
+        body {
+            transition: direction 0.3s ease, text-align 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-cyber-bg text-slate-200 font-sans antialiased overflow-x-hidden selection:bg-cyber-blue selection:text-white">
+
+    <div class="fixed top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+        <div class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-blue-900/10 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-emerald-900/10 rounded-full blur-[120px]"></div>
+    </div>
+
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-bg/70 border-b border-cyber-border/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="font-mono text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                <span class="text-cyber-green">&lt;</span>Bushra<span class="text-cyber-blue">.dev /&gt;</span>
+            </a>
+            
+            <nav class="hidden md:flex items-center gap-8 font-mono text-sm tracking-wide">
+                <a href="#about" data-i18n="nav-about" class="text-slate-400 hover:text-white transition-colors">01. About</a>
+                <a href="#skills" data-i18n="nav-skills" class="text-slate-400 hover:text-white transition-colors">02. Skills</a>
+                <a href="#projects" data-i18n="nav-projects" class="text-slate-400 hover:text-white transition-colors">03. Projects</a>
+                <a href="#connect" data-i18n="nav-connect" class="text-slate-400 hover:text-white transition-colors">04. Connect</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-4">
+                <button onclick="toggleLanguage()" id="lang-btn" class="px-3 py-1.5 rounded-lg border border-cyber-border bg-cyber-card text-xs font-mono text-slate-300 hover:text-white hover:border-slate-500 transition-all">
+                    العربية
+                </button>
+                <a href="#connect" data-i18n="nav-hire" class="px-5 py-2.5 rounded-xl border border-cyber-blue text-cyber-blue font-mono text-xs font-semibold hover:bg-cyber-blue/10 transition-all duration-300">
+                    Hire Candidate
+                </a>
+            </div>
+
+            <div class="flex items-center gap-4 md:hidden">
+                <button onclick="toggleLanguage()" id="lang-btn-mobile" class="px-2.5 py-1 rounded-lg border border-cyber-border bg-cyber-card text-xs font-mono text-slate-300">
+                    العربية
+                </button>
+                <button id="mobile-menu-btn" class="text-slate-400 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-cyber-bg border-b border-cyber-border px-6 py-6 flex flex-col gap-4 font-mono">
+            <a href="#about" data-i18n="nav-about" class="text-slate-400 hover:text-white py-2" onclick="toggleMobileMenu()">01. About</a>
+            <a href="#skills" data-i18n="nav-skills" class="text-slate-400 hover:text-white py-2" onclick="toggleMobileMenu()">02. Skills</a>
+            <a href="#projects" data-i18n="nav-projects" class="text-slate-400 hover:text-white py-2" onclick="toggleMobileMenu()">03. Projects</a>
+            <a href="#connect" data-i18n="nav-connect" class="text-slate-400 hover:text-white py-2" onclick="toggleMobileMenu()">04. Connect</a>
+            <a href="#connect" data-i18n="nav-hire" class="mt-2 w-full text-center px-5 py-2.5 rounded-xl border border-cyber-blue text-cyber-blue text-xs font-semibold" onclick="toggleMobileMenu()">
+                Hire Candidate
+            </a>
+        </div>
+    </header>
+
+    <main class="relative z-10 max-w-7xl mx-auto px-6">
+
+        <section id="hero" class="min-h-[calc(100vh-5rem)] flex flex-col justify-center py-12 md:py-20">
+            <div class="max-w-4xl">
+                <p class="font-mono text-cyber-green text-sm md:text-base mb-4 tracking-wider flex items-center gap-2">
+                    <span class="inline-block w-2 h-2 rounded-full bg-cyber-green animate-pulse"></span>
+                    <span data-i18n="hero-availability">AVAILABLE FOR ELITE TECH ROLES</span>
+                </p>
+                <h1 class="text-5xl md:text-7xl font-extrabold text-white tracking-tight leading-none mb-6">
+                    Bushra Al-Saqer
+                </h1>
+                <h2 class="text-2xl md:text-4xl font-bold text-slate-400 mb-6 flex flex-wrap items-center gap-2">
+                    <span data-i18n="hero-sub">Building systems as an elite</span>
+                    <span id="typewriter" class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-cyber-green border-r-2 border-cyber-blue pr-1"></span>
+                </h2>
+                <p data-i18n="hero-desc" class="text-slate-400 text-base md:text-xl max-w-2xl mb-12 leading-relaxed">
+                    A Computer Science graduate, Frontend Architect, UI/UX Designer, and Technical Project Leader. Specializing in bridging the gap between deep AI engineering and high-fidelity, intuitive user interfaces.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 font-mono">
+                    <a href="#projects" data-i18n="hero-btn-primary" class="px-6 py-3.5 bg-gradient-to-r from-cyber-blue to-blue-600 text-white rounded-xl font-medium shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-0.5 transition-all duration-300 flex items-center gap-2">
+                        View Deployments <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#connect" data-i18n="hero-btn-secondary" class="px-6 py-3.5 border border-cyber-border bg-cyber-card/40 text-slate-300 rounded-xl font-medium hover:bg-cyber-card/80 hover:text-white transition-all duration-300">
+                        Review Credentials
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 border-t border-cyber-border/60">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <div class="lg:col-span-7">
+                    <div class="flex items-center gap-4 mb-8">
+                        <span class="font-mono text-cyber-green text-lg">01.</span>
+                        <h2 data-i18n="about-title" class="text-3xl font-bold text-white tracking-tight">System Identity</h2>
+                        <div class="h-[1px] bg-cyber-border flex-grow"></div>
+                    </div>
+                    <div id="about-paragraphs" class="space-y-6 text-slate-400 leading-relaxed text-base md:text-lg">
+                        </div>
+                </div>
+                
+                <div class="lg:col-span-5 grid grid-cols-2 gap-4 pt-4 lg:pt-16">
+                    <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border/80">
+                        <div class="text-cyber-blue text-3xl font-mono font-bold mb-2">CS</div>
+                        <div data-i18n="metric-1" class="text-sm text-slate-400 font-medium">BSc Graduate & Core Architect</div>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border/80">
+                        <div class="text-cyber-green text-3xl font-mono font-bold mb-2">01</div>
+                        <div data-i18n="metric-2" class="text-sm text-slate-400 font-medium">Hackathon Award-Winning Build</div>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border/80">
+                        <div class="text-white text-3xl font-mono font-bold mb-2">100%</div>
+                        <div data-i18n="metric-3" class="text-sm text-slate-400 font-medium">SRS/SDD Lifecycle Managed</div>
+                    </div>
+                    <div class="p-6 rounded-2xl bg-cyber-card border border-cyber-border/80">
+                        <div class="text-purple-400 text-3xl font-mono font-bold mb-2">UI/UX</div>
+                        <div data-i18n="metric-4" class="text-sm text-slate-400 font-medium">Figma to Native Production Pipeline</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 border-t border-cyber-border/60">
+            <div class="flex items-center gap-4 mb-12">
+                <span class="font-mono text-cyber-green text-lg">02.</span>
+                <h2 data-i18n="skills-title" class="text-3xl font-bold text-white tracking-tight">Engine Capabilities</h2>
+                <div class="h-[1px] bg-cyber-border flex-grow"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-cyber-card/60 border border-cyber-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center text-cyber-blue mb-4">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3 data-i18n="skill-cat-1" class="text-lg font-bold text-white mb-4">Programming</h3>
+                        <ul class="space-y-2 font-mono text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-blue"></span> Python (Core Logic)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-blue"></span> Dart (Object Oriented)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-blue"></span> JavaScript (ES6+)</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-blue"></span> HTML5 & Semantics</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-cyber-card/60 border border-cyber-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-cyber-green mb-4">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h3 data-i18n="skill-cat-2" class="text-lg font-bold text-white mb-4">Frameworks & Engine</h3>
+                        <ul class="space-y-2 font-mono text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span> Flutter Ecosystem</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span> Tailwind CSS Architecture</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span> Custom Components</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-cyber-green"></span> Responsive Engines</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-cyber-card/60 border border-cyber-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-4">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <h3 data-i18n="skill-cat-3" class="text-lg font-bold text-white mb-4">AI & Infrastructure</h3>
+                        <ul class="space-y-2 font-mono text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> PyTorch Deep Learning</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Stacked LSTM Predictors</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Firebase Realtime Cloud</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span> Local PDPL Security</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-cyber-card/60 border border-cyber-border flex flex-col justify-between">
+                    <div>
+                        <div class="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-4">
+                            <i class="fa-solid fa-folder-tree"></i>
+                        </div>
+                        <h3 data-i18n="skill-cat-4" class="text-lg font-bold text-white mb-4">Design & Leadership</h3>
+                        <ul class="space-y-2 font-mono text-sm text-slate-400">
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Figma UI/UX Blueprinting</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> SRS Documentation</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> SDD Architecture Maps</li>
+                            <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span> Technical Sprint Leading</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 border-t border-cyber-border/60">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <span class="font-mono text-cyber-green text-lg">03.</span>
+                        <h2 data-i18n="projects-heading" class="text-3xl font-bold text-white tracking-tight">Core Deployments</h2>
+                    </div>
+                    <p data-i18n="projects-subheading" class="text-slate-400 max-w-xl">A curated selection of verified systems managed, engineered, and executed end-to-end.</p>
+                </div>
+                
+                <div class="flex gap-2 p-1 bg-cyber-card rounded-xl border border-cyber-border/60 font-mono text-xs overflow-x-auto shrink-0">
+                    <button onclick="filterProjects('all')" id="filter-btn-all" data-i18n="filter-all" class="px-4 py-2 rounded-lg text-white bg-cyber-blue font-medium transition-all duration-300">All Modules</button>
+                    <button onclick="filterProjects('ai')" id="filter-btn-ai" data-i18n="filter-ai" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white font-medium transition-all duration-300">AI & Hardware</button>
+                    <button onclick="filterProjects('lead')" id="filter-btn-lead" data-i18n="filter-lead" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white font-medium transition-all duration-300">Tech Lead</button>
+                    <button onclick="filterProjects('integration')" id="filter-btn-integration" data-i18n="filter-int" class="px-4 py-2 rounded-lg text-slate-400 hover:text-white font-medium transition-all duration-300">Integrations</button>
+                </div>
+            </div>
+
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-500">
+                </div>
+        </section>
+
+        <section id="connect" class="py-20 border-t border-cyber-border/60">
+            <div class="max-w-3xl mx-auto text-center">
+                <p data-i18n="connect-sub" class="font-mono text-cyber-blue text-sm mb-3 tracking-widest uppercase">04. Terminal Pipeline</p>
+                <h2 data-i18n="connect-title" class="text-4xl font-bold text-white mb-6 tracking-tight">Initiate Transmission</h2>
+                <p data-i18n="connect-desc" class="text-slate-400 text-lg mb-12 max-w-xl mx-auto">
+                    My transmission logs are always listening for elite technical partnerships, tech lead placements, or structural software consulting.
+                </p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto font-mono text-sm mb-12">
+                    <a href="https://linkedin.com/in/بشرى-محمد-الصقر-359017269" target="_blank" class="flex flex-col items-center justify-center p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-blue hover:bg-cyber-blue/5 transition-all duration-300 group">
+                        <i class="fa-brands fa-linkedin-in text-2xl text-slate-500 group-hover:text-cyber-blue mb-3 transition-colors"></i>
+                        <span class="text-slate-400 group-hover:text-white transition-colors">LinkedIn</span>
+                    </a>
+                    <a href="https://x.com/Alsqer_23" target="_blank" class="flex flex-col items-center justify-center p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-cyber-green hover:bg-cyber-green/5 transition-all duration-300 group">
+                        <i class="fa-brands fa-x-twitter text-2xl text-slate-500 group-hover:text-cyber-green mb-3 transition-colors"></i>
+                        <span class="text-slate-400 group-hover:text-white transition-colors">X / Twitter</span>
+                    </a>
+                    <a href="https://github.com/Saqeryh" target="_blank" class="flex flex-col items-center justify-center p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-purple-400 hover:bg-purple-400/5 transition-all duration-300 group">
+                        <i class="fa-brands fa-github text-2xl text-slate-500 group-hover:text-purple-400 mb-3 transition-colors"></i>
+                        <span class="text-slate-400 group-hover:text-white transition-colors">GitHub</span>
+                    </a>
+                    <a href="mailto:Saqeryh2340@gmail.com" class="flex flex-col items-center justify-center p-5 rounded-2xl bg-cyber-card border border-cyber-border hover:border-amber-400 hover:bg-amber-400/5 transition-all duration-300 group">
+                        <i class="fa-solid fa-envelope text-2xl text-slate-500 group-hover:text-amber-400 mb-3 transition-colors"></i>
+                        <span class="text-slate-400 group-hover:text-white transition-colors">Email</span>
+                    </a>
+                </div>
+
+                <div class="inline-block p-[1px] rounded-2xl bg-gradient-to-r from-cyber-blue to-cyber-green">
+                    <div id="secure-node" class="bg-cyber-bg px-8 py-4 rounded-2xl flex items-center gap-4 text-xs md:text-sm font-mono text-slate-400">
+                        <span class="w-2 h-2 rounded-full bg-cyber-green animate-ping"></span>
+                        Secure Handshake Node Active: bushra-alsaqer-node-2026
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-cyber-border/40 py-8 bg-cyber-card/20 text-center font-mono text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p id="footer-copy">© 2026 Bushra Al-Saqer. All Rights of Architecture Retained.</p>
+            <p id="footer-engine" class="flex items-center gap-2">
+                Engineered with <span class="text-cyber-blue">Tailwind CSS</span> & <span class="text-cyber-green">Vanilla ECMAScript</span>
+            </p>
+        </div>
+    </footer>
+
+    <div id="project-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center px-4 backdrop-blur-lg bg-cyber-bg/80 opacity-0 transition-opacity duration-300">
+        <div class="bg-cyber-card border border-cyber-border w-full max-w-2xl rounded-2xl p-6 md:p-8 relative transform scale-95 transition-transform duration-300 shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <script>
+        // Dictionary Repository containing all content nodes in English & Arabic
+        const i18nTokens = {
+            en: {
+                "nav-about": "01. About",
+                "nav-skills": "02. Skills",
+                "nav-projects": "03. Projects",
+                "nav-connect": "04. Connect",
+                "nav-hire": "Hire Candidate",
+                "hero-availability": "AVAILABLE FOR ELITE TECH ROLES",
+                "hero-sub": "Building systems as an elite",
+                "hero-desc": "A Computer Science graduate, Frontend Architect, UI/UX Designer, and Technical Project Leader. Specializing in bridging the gap between deep AI engineering and high-fidelity, intuitive user interfaces.",
+                "hero-btn-primary": "View Deployments",
+                "hero-btn-secondary": "Review Credentials",
+                "about-title": "System Identity",
+                "metric-1": "BSc Graduate & Core Architect",
+                "metric-2": "Hackathon Award-Winning Build",
+                "metric-3": "SRS/SDD Lifecycle Managed",
+                "metric-4": "Figma to Native Production Pipeline",
+                "skills-title": "Engine Capabilities",
+                "skill-cat-1": "Programming",
+                "skill-cat-2": "Frameworks & Engine",
+                "skill-cat-3": "AI & Infrastructure",
+                "skill-cat-4": "Design & Leadership",
+                "projects-heading": "Core Deployments",
+                "projects-subheading": "A curated selection of verified systems managed, engineered, and executed end-to-end.",
+                "filter-all": "All Modules",
+                "filter-ai": "AI & Hardware",
+                "filter-lead": "Tech Lead",
+                "filter-int": "Integrations",
+                "connect-sub": "04. Terminal Pipeline",
+                "connect-title": "Initiate Transmission",
+                "connect-desc": "My transmission logs are always listening for elite technical partnerships, tech lead placements, or structural software consulting.",
+                "secure-node": "Secure Handshake Node Active: bushra-alsaqer-node-2026",
+                "footer-copy": "© 2026 Bushra Al-Saqer. All Rights of Architecture Retained.",
+                "btn-decom": "Initialize Decomposition",
+                "btn-modal-close": "Terminate Log Viewer",
+                "about-p1": "I hold a rigorous degree in <span class='text-white font-medium'>Computer Science</span>, a foundation that instilled in me a deep reverence for classical systems architecture and clean execution. I view engineering not just as writing syntax, but as designing robust, sustainable infrastructure.",
+                "about-p2": "As a natural <span class='text-white font-medium'>Technical Project Leader</span>, I have successfully steered engineering groups like <span class='text-cyber-blue font-semibold'>Team Pulse</span> through intense production cycles. My leadership architecture relies on coordination, precise milestone charting, and aligning multidisciplinary talent.",
+                "about-p3": "Whether establishing cryptographic data localizations compliant with national privacy frameworks like <span class='text-cyber-green font-semibold'>PDPL</span>, or crafting hyper-responsive custom components, I approach every code layer with extreme intentionality."
+            },
+            ar: {
+                "nav-about": "٠١. عن المهندسة",
+                "nav-skills": "٠٢. المهارات",
+                "nav-projects": "٠٣. المشاريع",
+                "nav-connect": "٠٤. الاتصال",
+                "nav-hire": "توظيف الكفاءة",
+                "hero-availability": "متاحة للمناصب التقنية والنخبوية",
+                "hero-sub": "بناء الأنظمة البرمجية كـ",
+                "hero-desc": "خريجة علوم حاسب، معمارية واجهات فرونت-إند، ومصممة واجهات وتجربة مستخدم UI/UX، وقائدة مشاريع تقنية. متخصصة في سد الفجوة بين هندسة الذكاء الاصطناعي العميق والواجهات البرمجية البديهية عالية الأداء.",
+                "hero-btn-primary": "استعراض المشاريع",
+                "hero-btn-secondary": "مراجعة المؤهلات",
+                "about-title": "الهوية البرمجية",
+                "metric-1": "بكالوريوس علوم حاسب ومعمارية نظم",
+                "metric-2": "مشروع حائز على جائزة في الهاكاثون",
+                "metric-3": "إدارة كاملة لتوثيق دورة حياة النظم SRS/SDD",
+                "metric-4": "تحويل مخططات Figma إلى كود إنتاجي حقيقي",
+                "skills-title": "قدرات ومحرك العمل",
+                "skill-cat-1": "البرمجة اللغوية",
+                "skill-cat-2": "إطارات العمل والواجهات",
+                "skill-cat-3": "الذكاء الاصطناعي والبنية التحتية",
+                "skill-cat-4": "التصميم والقيادة التقنية",
+                "projects-heading": "المشاريع المنشورة",
+                "projects-subheading": "مجموعة مختارة من الأنظمة البرمجية التي تم تطويرها وإدارتها وهندستها بالكامل من البداية للنهاية.",
+                "filter-all": "كل الوحدات",
+                "filter-ai": "الذكاء الاصطناعي والعتاد",
+                "filter-lead": "القيادة التقنية",
+                "filter-int": "التكامل والربط",
+                "connect-sub": "٠٤. قناة الاتصال",
+                "connect-title": "بدء الإرسال التقني",
+                "connect-desc": "قنوات الاتصال والملفات البرمجية جاهزة دائماً لاستقبال شراكات تقنية نوعية، أو مناصب قيادية، أو استشارات برمجية هيكلية.",
+                "secure-node": "عقدة الاتصال الآمنة نشطة: bushra-alsaqer-node-2026",
+                "footer-copy": "© ٢٠٢٦ بشرى الصقر. جميع حقوق الهيكلية البرمجية محفوظة.",
+                "btn-decom": "تحليل هيكلية المشروع",
+                "btn-modal-close": "إغلاق نافذة السجلات",
+                "about-p1": "أحمل درجة علمية صارمة في <span class='text-white font-medium'>علوم الحاسب الآلي</span>، وهو التخصص الذي غرس في داخلي احتراماً عميقاً لبناء الأنظمة الكلاسيكية والتنفيذ النظيف للكود. لا أرى الهندسة البرمجية مجرد كتابة نصوص، بل بناء بنية تحتية مستدامة وقوية.",
+                "about-p2": "كـ <span class='text-white font-medium'>قائدة مشاريع تقنية</span> بطبيعتي، نجحت في توجيه وإدارة فرق هندسية مثل فريق <span class='text-cyber-blue font-semibold'>Team Pulse</span> خلال دورات إنتاج مكثفة وعالية الضغط. تعتمد فلسفتي القيادية على التوثيق المحكم، وتحديد مستهدفات المراحل بدقة، ومواءمة الكفاءات متعددة التخصصات.",
+                "about-p3": "سواء كنت أقوم بتأسيس تشفير البيانات وتوطينها محلياً بما يتوافق مع الأنظمة الوطنية لحماية البيانات مثل <span class='text-cyber-green font-semibold'>PDPL</span>، أو بناء مكونات واجهة مخصصة فائقة الاستجابة، فإنني أتعامل مع كل طبقة برمجية بوعي وتخطيط دقيق."
+            }
+        };
+
+        // Complete Bilingual Projects Data Store
+        const localizedProjects = {
+            en: [
+                { id: "rawa", title: "RAWA | ThrombiX", cat: "ai", badge: "AgentX Hackathon Build", desc: "An AI-guided wearable medical system predicting thrombosis for the AgentX Hackathon, using PyTorch Stacked LSTM models and local data security.", tech: ["PyTorch", "Stacked LSTM", "PDPL Compliant", "Flutter UI"] },
+                { id: "food", title: "Food Rescue Platform", cat: "lead", badge: "Software Engineering Lead", desc: "An enterprise-grade software project managed as a team lead, designing the complete SRS/SDD documentation, wireframes, and UI workflows.", tech: ["SRS / SDD Plan", "Figma Blueprints", "Python Logic", "Team Pulse"] },
+                { id: "salla", title: "Salla Digital Storefront", cat: "integration", badge: "E-Commerce Infrastructure", desc: "Technical setup and deployment of e-commerce retail networks, integrating localized payment gateways and split-payment micro-installment webhooks.", tech: ["Salla API", "Payment Gateways", "Webflows", "UI Tweaks"] }
+            ],
+            ar: [
+                { id: "rawa", title: "رَوَى | ThrombiX", cat: "ai", badge: "مشروع هاكاثون AgentX", desc: "نظام طبي ذكي قابل للارتداء للتنبؤ بالجلطات الخثرية لـ هاكاثون AgentX، يعتمد على نماذج PyTorch Stacked LSTM وتوطين آمن للبيانات.", tech: ["PyTorch", "Stacked LSTM", "امتثال نظام PDPL", "واجهة Flutter"] },
+                { id: "food", title: "منصة إنقاذ الطعام", cat: "lead", badge: "قائدة الفريق الهندسي", desc: "مشروع هندسة برمجيات متكامل تمت إدارته كقائدة فريق، مع بناء وثائق المتطلبات والتصميم الكاملة SRS/SDD والمخططات الهيكلية في Figma.", tech: ["وثائق SRS / SDD", "مخططات Figma", "منطق الـ Python", "فريق Pulse"] },
+                { id: "salla", title: "متجر سلة الرقمي", cat: "integration", badge: "البنية التحتية للمتاجر", desc: "الإعداد التقني وتكامل الأنظمة للتجارة الرقمية، وربط بوابات الدفع المحلية مع تفعيل برمجيات الدفع المجزأ والتمويل المصغر لـ تمارا وتابي.", tech: ["واجهة Salla API", "بوابات الدفع", "مسارات الويب", "تحسينات واجهة UI"] }
+            ]
+        };
+
+        const modalDetailedData = {
+            en: {
+                rawa: { subtitle: "AgentX Hackathon Infrastructure", title: "RAWA | ThrombiX Deep System Analysis", tech: ["PyTorch Stacked LSTM", "Local Storage Encryption", "PDPL Framework Integration", "Dart / Flutter Front-end"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>RAWA | ThrombiX represents a massive achievement in high-stakes wearable architectures. The engine leverages custom deep-learning sequences trained locally to alert operators of developing physiological anomalies before visible physical degradation manifests.</p><h4 class='text-sm font-mono text-cyber-green font-semibold uppercase tracking-wider mb-2'>Core Contribution Breakdown:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-disc list-inside'><li>Designed the native hyper-responsive instrumentation visualizers in Flutter.</li><li>Configured local offline execution metrics ensuring deep compliance with national <span class='text-white'>PDPL Cryptographic Data Regulations</span>.</li><li>Assisted with structural routing pipelines passing localized health token payloads directly into the PyTorch inference models.</li></ul>` },
+                food: { subtitle: "Technical Software Engineering Capstone Initiative", title: "Food Rescue Orchestration Engine", tech: ["System Requirement Specification (SRS)", "System Design Document (SDD)", "Figma Workflows", "Team Pulse Agile Lead"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>This deployment serves as a complete, industry-standard proof-of-concept system managed under agile paradigms. It optimizes surplus food relocation using advanced matrix mapping algorithms.</p><h4 class='text-sm font-mono text-cyber-blue font-semibold uppercase tracking-wider mb-2'>Core Contribution Breakdown:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-disc list-inside'><li>Appointed as <span class='text-white'>Technical Project Leader</span> directing Team Pulse engineering sprints.</li><li>Authored the complete, production-grade <span class='text-white'>SRS and SDD Documentation maps</span> detailing complex relational data structures.</li><li>Constructed the high-fidelity component schematics and user journey logic maps within Figma prior to writing code.</li></ul>` },
+                salla: { subtitle: "High Conversion E-Commerce Infrastructure Customization", title: "Salla Digital Storefront Integration", tech: ["Salla API Gateway", "Micro-Installment Webhooks", "Custom CSS Variables", "Conversion Analytics Setup"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>This project focuses on expanding regional e-commerce capabilities via targeted custom API implementations and specialized merchant gateway adaptations.</p><h4 class='text-sm font-mono text-purple-400 font-semibold uppercase tracking-wider mb-2'>Core Contribution Breakdown:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-disc list-inside'><li>Integrated micro-installment split-payment webhooks allowing real-time alternative financing structures at runtime checkout.</li><li>Overrode restrictive layout parameters using native styles to prioritize visual speed indexes and component access patterns.</li><li>Validated transactional API error metrics to ensure zero-loss ordering records under burst transaction loads.</li></ul>` }
+            },
+            ar: {
+                rawa: { subtitle: "بنية هاكاثون AgentX التحتية", title: "التحليل الهيكلي العميق لنظام رَوَى البرمجي", tech: ["مصفوفات PyTorch LSTM", "تشفير التخزين المحلي", "التكامل مع إطار تنظيم PDPL", "واجهات تطبيق Flutter"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>يمثل نظام رَوَى الطبي إنجازاً هندسياً كبيراً في النظم البرمجية عالية المخاطر والقابلة للارتداء. يستغل المحرك خوارزميات التعلم العميق المدربة محلياً للتنبؤ بالاختلالات الوظيفية والفيزيولوجية للجسم وإرسال تنبيهات استباقية قبل حدوث أي تدهور صحي ملموس.</p><h4 class='text-sm font-mono text-cyber-green font-semibold uppercase tracking-wider mb-2'>جدول تفصيل المساهمة الفردية:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-none pr-0'><li>• بناء وهندسة واجهات القياس والمراقبة الطبية الفورية بشكل كامل باستخدام <span class='text-white'>Flutter</span>.</li><li>• ضبط معايير التشغيل المحلي (Offline) بالكامل لضمان الامتثال الصارم لـ <span class='text-white'>نظام حماية البيانات الشخصية السعودي (PDPL)</span>.</li><li>• بناء خطوط الربط البرمجي لتمرير المؤشرات الحيوية المشفرة مباشرة من الحساسات إلى نموذج الاستدلال في PyTorch.</li></ul>` },
+                food: { subtitle: "مشروع تخرج متكامل لنظم هندسة البرمجيات", title: "محرك التوزيع الذكي لمنصة إنقاذ الطعام", tech: ["كتابة كراسة متطلبات النظام SRS", "مستند تصميم وبنية النظام SDD", "بناء مسارات تدفق Figma", "قيادة فريق التفكير المرن Pulse"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>تمت إدارة وتطوير هذا المشروع الإنتاجي وفقاً لمنهجيات Agile الهندسية الحديثة، بهدف معالجة هدر فائض الأطعمة وإعادة توزيعه عبر خوارزميات ربط المصفوفات الذكية الفورية.</p><h4 class='text-sm font-mono text-cyber-blue font-semibold uppercase tracking-wider mb-2'>جدول تفصيل المساهمة الفردية:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-none pr-0'><li>• التعيين كـ <span class='text-white'>قائدة تقنية للفريق الهندسي</span> وإدارة دورات التطوير والـ Sprints لفريق Team Pulse.</li><li>• هندسة وصياغة وثائق <span class='text-white'>SRS (مواصفات متطلبات النظام) و SDD (مستند تصميم النظام)</span> الاحترافية بكافة مخططات البيانات العلاقية.</li><li>• هندسة وهيكلة تجربة المستخدم UI/UX بالكامل وبناء نماذج عالية الدقة في بيئة Figma قبل البدء بالبرمجة الفعليّة.</li></ul>` },
+                salla: { subtitle: "تخصيص البنية الرقمية للمتاجر عالية التحويل", title: "الربط التقني المتكامل لمتجر منصة سلة", tech: ["واجهات برمجية Salla API", "بوابات الدفع المقسم التفاعلية", "تخصيص واجهات الويب الهيكلية", "ربط تحليلات الأداء والتحويل"], body: `<p class='text-slate-300 mb-4 leading-relaxed'>ركز هذا المشروع التقني على تحسين وتوسيع أداء منصات البيع الرقمية من خلال دمج مخصص للواجهات البرمجية وبوابات التجار الإقليمية لتعزيز الأداء المالي للمتجر.</p><h4 class='text-sm font-mono text-purple-400 font-semibold uppercase tracking-wider mb-2'>جدول تفصيل المساهمة الفردية:</h4><ul class='space-y-2 text-sm text-slate-400 mb-6 list-none pr-0'><li>• دمج تقنيات وبرمجيات الدفع الآجل والتقسيط الميكروي (Split Payments) عبر الـ Webhooks لتعمل بدقة فورية عند السداد.</li><li>• تخصيص أنماط العرض والتصميم الافتراضية لمنصة سلة لرفع مؤشر سرعة تصفح المستخدم وأولوية المكونات الحيوية.</li><li>• اختبار بوابات الدفع للتأكد من انعدام الأخطاء في سجلات المعاملات البرمجية تحت هجمات ضغط الشراء الكثيفة.</li></ul>` }
+            }
+        };
+
+        const typewriterStrings = {
+            en: ["Frontend Developer", "Technical Team Lead", "UI/UX System Designer", "Computer Science Scholar"],
+            ar: ["مهندسة واجهات فرونت-إند", "قائدة للمشاريع التقنية", "مصممة نظم الـ UI/UX", "أكاديمية في علوم الحاسب الآلي"]
+        };
+
+        let currentLang = 'en';
+
+        // Core Language Toggle Runtime Engine
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'ar' : 'en';
+            renderLanguageArchitecture();
+        }
+
+        function renderLanguageArchitecture() {
+            const htmlTag = document.getElementById("html-tag");
+            const isAr = currentLang === 'ar';
+            
+            // Toggle Document Orientation Variables
+            htmlTag.setAttribute("dir", isAr ? "rtl" : "ltr");
+            htmlTag.setAttribute("lang", currentLang);
+
+            // Toggle Visual Direction Classes on Fonts
+            if (isAr) {
+                htmlTag.style.fontFamily = "'Cairo', sans-serif";
+            } else {
+                htmlTag.style.fontFamily = "'Plus Jakarta Sans', sans-serif";
+            }
+
+            // Update DOM Static Tokens
+            document.querySelectorAll("[data-i18n]").forEach(element => {
+                const token = element.getAttribute("data-i18n");
+                if (i18nTokens[currentLang][token]) {
+                    element.innerHTML = i18nTokens[currentLang][token];
+                }
+            });
+
+            // Update Navigation Button Text Indicators
+            document.getElementById("lang-btn").textContent = isAr ? "English" : "العربية";
+            document.getElementById("lang-btn-mobile").textContent = isAr ? "English" : "العربية";
+
+            // Render Localized About Paragraphs Block
+            const aboutBox = document.getElementById("about-paragraphs");
+            aboutBox.innerHTML = `
+                <p>${i18nTokens[currentLang]['about-p1']}</p>
+                <p>${i18nTokens[currentLang]['about-p2']}</p>
+                <p>${i18nTokens[currentLang]['about-p3']}</p>
+            `;
+
+            // Reset and Re-trigger Dynamic Localized Projects Component
+            renderProjectsGrid();
+
+            // Reset Typewriter Pointer States
+            currentStringIndex = 0;
+            currentCharIndex = 0;
+            isDeleting = false;
+        }
+
+        // Render Localized Project Cards Matrix
+        function renderProjectsGrid() {
+            const container = document.getElementById("projects-container");
+            container.innerHTML = "";
+
+            const borderGlowClass = { rawa: 'glow-green', food: 'glow-blue', salla: 'glow-blue' };
+            const iconType = { rawa: 'fa-microchip', food: 'fa-sitemap', salla: 'fa-wallet' };
+            const textHighlight = { rawa: 'group-hover:text-cyber-green', food: 'group-hover:text-cyber-blue', salla: 'group-hover:text-purple-400' };
+            const btnHoverStyles = { rawa: 'group-hover:bg-cyber-green/10 group-hover:border-cyber-green', food: 'group-hover:bg-cyber-blue/10 group-hover:border-cyber-blue', salla: 'group-hover:bg-purple-500/10 group-hover:border-purple-500' };
+
+            localizedProjects[currentLang].forEach(project => {
+                const badgesHtml = project.tech.map(t => `<span class="px-2.5 py-1 rounded bg-cyber-bg border border-cyber-border font-mono text-[11px] text-slate-400">${t}</span>`).join('');
+                
+                const cardHtml = `
+                    <div class="project-card group p-6 rounded-2xl bg-cyber-card border border-cyber-border/80 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 ${borderGlowClass[project.id]}" data-category="${project.cat}">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-cyber-blue tracking-widest uppercase">${project.badge}</span>
+                                <div class="text-slate-500 ${textHighlight[project.id]} transition-colors">
+                                    <i class="fa-solid ${iconType[project.id]} text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 ${textHighlight[project.id]} transition-colors">${project.title}</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">${project.desc}</p>
+                        </div>
+                        <div>
+                            <div class="flex flex-wrap gap-2 mb-6">${badgesHtml}</div>
+                            <button onclick="openModal('${project.id}')" class="w-full py-2.5 rounded-xl border border-cyber-border bg-cyber-bg/40 font-mono text-xs font-medium text-slate-300 group-hover:text-white ${btnHoverStyles[project.id]} transition-all duration-300">
+                                ${i18nTokens[currentLang]['btn-decom']} <i class="fa-solid ${currentLang === 'ar' ? 'fa-arrow-left mr-1' : 'fa-arrow-right ml-1'} text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
+
+        // Typewriter Engine Pipeline Architecture
+        let currentStringIndex = 0;
+        let currentCharIndex = 0;
+        let isDeleting = false;
+        const typewriterElement = document.getElementById("typewriter");
+        const typingSpeed = 100;
+        const erasingSpeed = 50;
+        const delayBetweenStrings = 2000;
+
+        function performTypewriterSequence() {
+            const currentFullString = typewriterStrings[currentLang][currentStringIndex];
+            
+            if (isDeleting) {
+                typewriterElement.textContent = currentFullString.substring(0, currentCharIndex - 1);
+                currentCharIndex--;
+            } else {
+                typewriterElement.textContent = currentFullString.substring(0, currentCharIndex + 1);
+                currentCharIndex++;
+            }
+
+            if (!isDeleting && currentCharIndex === currentFullString.length) {
+                isDeleting = true;
+                setTimeout(performTypewriterSequence, delayBetweenStrings);
+            } else if (isDeleting && currentCharIndex === 0) {
+                isDeleting = false;
+                currentStringIndex = (currentStringIndex + 1) % typewriterStrings[currentLang].length;
+                setTimeout(performTypewriterSequence, 500);
+            } else {
+                setTimeout(performTypewriterSequence, isDeleting ? erasingSpeed : typingSpeed);
+            }
+        }
+
+        // Mobile Nav Trigger Controller
+        function toggleMobileMenu() {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        }
+        document.getElementById("mobile-menu-btn").addEventListener("click", toggleMobileMenu);
+
+        // Project Categories Visual Filtering Engine
+        function filterProjects(category) {
+            const cards = document.querySelectorAll(".project-card");
+            const buttons = document.querySelectorAll("[id^='filter-btn-']");
+
+            buttons.forEach(btn => {
+                btn.classList.remove("text-white", "bg-cyber-blue");
+                btn.classList.add("text-slate-400");
+            });
+
+            const activeBtn = document.getElementById(`filter-btn-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove("text-slate-400");
+                activeBtn.classList.add("text-white", "bg-cyber-blue");
+            }
+
+            cards.forEach(card => {
+                if (category === "all" || card.getAttribute("data-category") === category) {
+                    card.style.display = "flex";
+                    setTimeout(() => { card.style.opacity = "1"; card.style.transform = "scale(1)"; }, 50);
+                } else {
+                    card.style.opacity = "0"; card.style.transform = "scale(0.95)";
+                    setTimeout(() => { card.style.display = "none"; }, 300);
+                }
+            });
+        }
+
+        // Modal Component Dynamic Lifecycle Methods
+        function openModal(projectId) {
+            const data = modalDetailedData[currentLang][projectId];
+            if (!data) return;
+
+            const modalContainer = document.getElementById("project-modal");
+            const contentTarget = document.getElementById("modal-content");
+            const badgesHtml = data.tech.map(t => `<span class="px-2 py-1 rounded bg-cyber-bg border border-cyber-border font-mono text-[10px] text-slate-400">${t}</span>`).join('');
+
+            contentTarget.innerHTML = `
+                <span class="font-mono text-xs text-cyber-blue tracking-widest uppercase block mb-1">${data.subtitle}</span>
+                <h3 class="text-2xl font-bold text-white mb-4 tracking-tight">${data.title}</h3>
+                <div class="flex flex-wrap gap-2 mb-6">${badgesHtml}</div>
+                <div class="border-t border-cyber-border pt-4 mb-6">${data.body}</div>
+                <div class="flex justify-end pt-2">
+                    <button onclick="closeModal()" class="px-5 py-2 rounded-xl bg-cyber-border text-white font-mono text-xs hover:bg-slate-700 transition-all duration-300">${i18nTokens[currentLang]['btn-modal-close']}</button>
+                </div>
+            `;
+
+            modalContainer.classList.remove("hidden");
+            setTimeout(() => {
+                modalContainer.classList.add("opacity-100");
+                modalContainer.firstElementChild.classList.remove("scale-95");
+                modalContainer.firstElementChild.classList.add("scale-100");
+            }, 10);
+            document.body.style.overflow = "hidden";
+        }
+
+        function closeModal() {
+            const modalContainer = document.getElementById("project-modal");
+            modalContainer.classList.remove("opacity-100");
+            modalContainer.firstElementChild.classList.remove("scale-100");
+            modalContainer.firstElementChild.classList.add("scale-95");
+            setTimeout(() => {
+                modalContainer.classList.add("hidden");
+                document.body.style.overflow = "auto";
+            }, 300);
+        }
+
+        document.getElementById("project-modal").addEventListener("click", function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // Application System Bootstrapper
+        document.addEventListener("DOMContentLoaded", () => {
+            // Detect visitor language (Fallback to English if not Arabic)
+            const userLang = navigator.language || navigator.userLanguage;
+            currentLang = userLang.startsWith('ar') ? 'ar' : 'en';
+            
+            // Run localized compiler
+            renderLanguageArchitecture();
+            
+            // Boot Typewriter subsystem
+            setTimeout(performTypewriterSequence, 1000);
+        });
+    </script>
+</body>
+</html>
