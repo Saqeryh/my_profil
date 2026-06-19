@@ -479,8 +479,57 @@
             `;
 
             // Reset and Re-trigger Dynamic Localized Projects Component
-            renderProjectsGrid();
+// Render Localized Project Cards Matrix
+        function renderProjectsGrid() {
+            const container = document.getElementById("projects-container");
+            container.innerHTML = "";
 
+            const borderGlowClass = { rawa: 'glow-green', food: 'glow-blue', salla: 'glow-blue' };
+            const iconType = { rawa: 'fa-microchip', food: 'fa-sitemap', salla: 'fa-wallet' };
+            const textHighlight = { rawa: 'group-hover:text-cyber-green', food: 'group-hover:text-cyber-blue', salla: 'group-hover:text-purple-400' };
+            const btnHoverStyles = { rawa: 'group-hover:bg-cyber-green/10 group-hover:border-cyber-green', food: 'group-hover:bg-cyber-blue/10 group-hover:border-cyber-blue', salla: 'group-hover:bg-purple-500/10 group-hover:border-purple-500' };
+
+            localizedProjects[currentLang].forEach(project => {
+                const badgesHtml = project.tech.map(t => `<span class="px-2.5 py-1 rounded bg-cyber-bg border border-cyber-border font-mono text-[11px] text-slate-400">${t}</span>`).join('');
+                
+                // إضافة زر الـ UI/UX لمشروع رواء فقط بالتوافق مع اللغة الحالية
+                let uiuxButtonHtml = "";
+                if (project.id === "rawa") {
+                    const btnText = currentLang === 'ar' ? 'عرض دراسة حالة UI/UX' : 'View UI/UX Design';
+                    uiuxButtonHtml = `
+                        <div class="mb-4">
+                            <a href="https://saqeryh.github.io/Rawaa-/" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 bg-[#1E293B] hover:bg-[#3B82F6]/20 text-[#3B82F6] hover:text-white font-mono text-xs font-semibold rounded-xl border border-[#3B82F6]/30 hover:border-[#3B82F6] transition-all duration-300">
+                                <i class="fa-solid fa-compass-drafting"></i>
+                                <span>${btnText}</span>
+                            </a>
+                        </div>
+                    `;
+                }
+
+                const cardHtml = `
+                    <div class="project-card group p-6 rounded-2xl bg-cyber-card border border-cyber-border/80 flex flex-col justify-between transition-all duration-300 transform hover:-translate-y-2 ${borderGlowClass[project.id]}" data-category="${project.cat}">
+                        <div>
+                            <div class="flex items-center justify-between mb-6">
+                                <span class="font-mono text-xs text-cyber-blue tracking-widest uppercase">${project.badge}</span>
+                                <div class="text-slate-500 ${textHighlight[project.id]} transition-colors">
+                                    <i class="fa-solid ${iconType[project.id]} text-xl"></i>
+                                </div>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3 ${textHighlight[project.id]} transition-colors">${project.title}</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-6">${project.desc}</p>
+                        </div>
+                        <div>
+                            ${uiuxButtonHtml}
+                            <div class="flex flex-wrap gap-2 mb-6">${badgesHtml}</div>
+                            <button onclick="openModal('${project.id}')" class="w-full py-2.5 rounded-xl border border-cyber-border bg-cyber-bg/40 font-mono text-xs font-medium text-slate-300 group-hover:text-white ${btnHoverStyles[project.id]} transition-all duration-300">
+                                ${i18nTokens[currentLang]['btn-decom']} <i class="fa-solid ${currentLang === 'ar' ? 'fa-arrow-left mr-1' : 'fa-arrow-right ml-1'} text-[10px]"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += cardHtml;
+            });
+        }
             // Reset Typewriter Pointer States
             currentStringIndex = 0;
             currentCharIndex = 0;
